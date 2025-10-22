@@ -1,8 +1,9 @@
-# tragedy?? by DECK
-Roster:
-- Cindy Liu (PM)
-- Ethan Cheung
-- David Lee
-- Kalimul Kaif
+# Tragedy?? by DECK
+
+Roster: Cindy Liu (PM), David Lee, Ethan Cheung, Kalimul Kaif
 
 Description:
+
+Install guide:
+
+Launch codes:
