@@ -1,0 +1,4 @@
+It will list flask as well as any other pip installs your app requires.
+Latest version of all packages.
+Clearance must be sought and granted for any modules/libraries not explicitly covered in class.
+--------------------------------------------------------------
