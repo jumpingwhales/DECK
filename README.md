@@ -1,9 +1,13 @@
 # Tragedy?? by DECK
 
-Roster: Cindy Liu (PM), David Lee, Ethan Cheung, Kalimul Kaif
+# Roster: 
+Cindy Liu - Project Manager (PM)
+David Lee - Backend Devo 1
+Ethan Cheung - Frontend Devo 1
+Kalimul Kaif - Backend Devo 2
 
-Description:
+# Description:
 
-Install guide:
+# Install guide:
 
-Launch codes:
+# Launch codes:
