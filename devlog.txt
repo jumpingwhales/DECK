@@ -28,4 +28,10 @@ INITIAL DD REVIEW -- 2025-10-23 21:00
 - as many agree from REV's, better to be thorough and specific as possible with component explanations to see how pieces fit together, now rather than later when you're already DEV'ing
 - inspiration: another group had logout.html page, pretty logical; maybe we should also implement that (if not, redirect to homepage?)
 
+davidL -- 2025-10-24 11:38
+- planned database organization and tables based on old DD
+- planned needed pages for option delta (blogs)
 
+kalimulK -- 2025-10-24 11:39
+- planned components for each database (revisions)
+- created database tables added onto new design doc
