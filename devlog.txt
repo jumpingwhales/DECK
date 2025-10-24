@@ -1,31 +1,31 @@
-cindyL -- 2025-10-21 12:00\n
+cindyL -- 2025-10-21 12:00
 - created README.md
-- opened PR for added DECK submodule to p0-RoH\n
+- opened PR for added DECK submodule to p0-RoH
 
-ethanC -- 2025-10-22 11:20\n
+ethanC -- 2025-10-22 11:20
 - created, added team flag, renamed team flag
 - created sitemap
-- drafted potential css mockups\n
+- drafted potential css mockups
 
-kalimulK -- 2025-10-22 22:00\n
+kalimulK -- 2025-10-22 22:00
 - worked on database organization tables
-- fixed and researched sql data types for columns\n
+- fixed and researched sql data types for columns
 
-cindyL -- 2025-10-22 23:00\n
+cindyL -- 2025-10-22 23:00
 - specified program components
 - specified task breakdown
-- facilitated assignment of tasks\n
+- facilitated assignment of tasks
 
-davidL -- 2025-10-23 2:00\n
+davidL -- 2025-10-23 2:00
 - finished design doc component map
 - added component relationship explanations
 - edited database organization
-- printed 3x DDHC\n
+- printed 3x DDHC
 
-INITIAL DD REVIEW -- 2025-10-23 21:00\n
+INITIAL DD REVIEW -- 2025-10-23 21:00
 - some things easier said than done: using emails for auth is too complex, beyond our scope currently as mr. mykolyk said
 - consider: when making component maps, double check relations for contradictions, cut unnecessary ones
 - as many agree from REV's, better to be thorough and specific as possible with component explanations to see how pieces fit together, now rather than later when you're already DEV'ing
-- inspiration: another group had logout.html page, pretty logical; maybe we should also implement that (if not, redirect to homepage?)\n
+- inspiration: another group had logout.html page, pretty logical; maybe we should also implement that (if not, redirect to homepage?)
 
 
