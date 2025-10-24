@@ -35,3 +35,6 @@ davidL -- 2025-10-24 11:38
 kalimulK -- 2025-10-24 11:39
 - planned components for each database (revisions)
 - created database tables added onto new design doc
+
+cindyL -- 2025-10-24 12:50
+- added site map to design doc, updated project name on readme

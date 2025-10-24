@@ -1,6 +1,6 @@
-# Tragedy?? by DECK
+# LogDECK by DECK
 
-# Roster: 
+# Roster:
 Cindy Liu - Project Manager (PM) <br>
 David Lee - Backend Devo 1 <br>
 Ethan Cheung - Frontend Devo 1 <br>
