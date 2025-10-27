@@ -56,3 +56,8 @@ davidL -- 2025-10-27 2:06
 - added component map (mermaid)
 - revised aspects of component explanation
 - printed physical copies of new DD
+
+ethanC -- 2025-10-27 11:32
+- added to readme file in sections "Description" and "Install Guide"
+- added what the program should do in the "Description" section
+- added how to access the website using git clone and Flask
