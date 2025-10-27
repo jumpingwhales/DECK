@@ -37,4 +37,10 @@ kalimulK -- 2025-10-24 11:39
 - created database tables added onto new design doc
 
 cindyL -- 2025-10-24 12:50
-- added site map to design doc, updated project name on readme
+- added site map to design doc
+- updated project name on readme
+
+cindyL -- 2025-10-27 0:11
+- added list of program components
+- completed component explanation
+- added edit_blog to site map
