@@ -36,11 +36,23 @@ kalimulK -- 2025-10-24 11:39
 - planned components for each database (revisions)
 - created database tables added onto new design doc
 
+ethanC -- 2025-10-24 11:47
+- added revised site map
+
 cindyL -- 2025-10-24 12:50
 - added site map to design doc
 - updated project name on readme
+
+kalimulK -- 2025-10-26 10:06
+- revised primary and foreign keys (PK & FK) labels in database organization
+- revised database table components
 
 cindyL -- 2025-10-27 0:11
 - added list of program components
 - completed component explanation
 - added edit_blog to site map
+
+davidL -- 2025-10-27 2:06
+- added component map (mermaid)
+- revised aspects of component explanation
+- printed physical copies of new DD
