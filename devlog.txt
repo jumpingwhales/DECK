@@ -71,3 +71,6 @@ kalimulK -- 2025-10-27 21:34
 davidL -- 2025-10-27 23:56
 - reviewed and commented on updated design doc
 - revised condensed explanations further for accuracy
+
+ethanC -- 2025-10-28 11:08
+- changed SSH_ADDRESS to static SSH address in readme
