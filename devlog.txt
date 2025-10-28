@@ -63,3 +63,11 @@ ethanC -- 2025-10-27 11:32
 cindyL -- 2025-10-27 13:15
 - reorganized program component explanations
 - replaced Python variable types in Database Organization with SQLite variable types
+
+kalimulK -- 2025-10-27 21:34
+- reviewed design doc edits
+- gave team feedback on edited components
+
+davidL -- 2025-10-27 23:56
+- reviewed and commented on updated design doc
+- revised condensed explanations further for accuracy
