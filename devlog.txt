@@ -74,3 +74,7 @@ davidL -- 2025-10-27 23:56
 
 ethanC -- 2025-10-28 11:08
 - changed SSH_ADDRESS to static SSH address in readme
+
+cindyL -- 2025-10-28 11:44
+- readme launch codes and install guides edited
+- empty logout and homepage added w/ headers
