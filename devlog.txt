@@ -85,3 +85,7 @@ davidL -- 2025-10-28 11:47
 
 ethanC -- 2025-10-28 11:49
 - worked on create_page.html
+
+cindyL -- 2025-10-28 13:04
+- very minor syntax edits on __init__
+- very minor additions to homepage
