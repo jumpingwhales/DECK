@@ -78,3 +78,7 @@ ethanC -- 2025-10-28 11:08
 cindyL -- 2025-10-28 11:44
 - readme launch codes and install guides edited
 - empty logout and homepage added w/ headers
+
+davidL -- 2025-10-28 11:47
+- worked on db setup on init py file
+- worked on app setup on init py file
