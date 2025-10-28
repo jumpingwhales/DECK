@@ -82,3 +82,6 @@ cindyL -- 2025-10-28 11:44
 davidL -- 2025-10-28 11:47
 - worked on db setup on init py file
 - worked on app setup on init py file
+
+ethanC -- 2025-10-28 11:49
+- worked on create_page.html
