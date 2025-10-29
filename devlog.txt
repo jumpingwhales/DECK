@@ -106,3 +106,6 @@ EXTERNAL README REVIEW SUMMARY -- 2025-10-29 2:22
 - we are not sure what "external readme review" entails (cindy), maybe reviewing other teams' readme's? (david) in that case...
 - FatCatWiki has good install guide, we stole the venv install guide (inspiration) because that is a good addition if users dont want to or dont have permission to install packages on regular machine
 - BananasWiki also has good detailed install guide, with venv and flask install guide as well (similar to ours)
+
+davidL -- 2025-10-29 11:23
+- ran pip freeze command, filled requirements.txt (WITH cindyL)
