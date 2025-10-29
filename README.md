@@ -23,10 +23,13 @@ To open a virtual environment:
 ```python3 -m venv venv```
 
 Activate the venv:
+
 For Windows: ```venv\Scripts\activate```
+
 For Linux: ```. venv/bin/activate```
 
 Install dependencies:
+
 ```pip install -r requirements.txt```
 
 # Launch codes:
