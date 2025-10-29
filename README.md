@@ -7,7 +7,7 @@ Ethan Cheung - Frontend Devo 1 <br>
 Kalimul Kaif - Backend Devo 2
 
 # Description:
-A Flask application coded in Python, utilizing SQLite databases to store users, blogs, and edit history. Dynamic HTML pages will be displayed based on user credentials and actions that the user can take, including registering or logging into accounts, creating and updating blogs, and viewing their own and other users' blogs, among other miscellaneous functionalies.
+A Flask application coded in Python, utilizing SQLite databases to store users, blogs, and edit history. Dynamic HTML pages will be displayed based on user credentials and actions that the user can take, including registering or logging into accounts, creating and updating blogs, and viewing their own and other users' blogs, among other miscellaneous functionalities.
 
 # Install guide:
 To clone the repo, open the terminal and enter:
