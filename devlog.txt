@@ -72,6 +72,10 @@ davidL -- 2025-10-27 23:56
 - reviewed and commented on updated design doc
 - revised condensed explanations further for accuracy
 
+DD CHANGES SUMMARY -- 2025-10-27 23:56
+- explanations clarified and organized for readability
+- variable types fixed in DB organization tables
+
 ethanC -- 2025-10-28 11:08
 - changed SSH_ADDRESS to static SSH address in readme
 
@@ -89,3 +93,11 @@ ethanC -- 2025-10-28 11:49
 cindyL -- 2025-10-28 13:04
 - very minor syntax edits on __init__
 - very minor additions to homepage
+
+cindyL -- 2025-10-29 00:04
+- readme updated to include pip install flask
+
+EXTERNAL README REVIEW SUMMARY -- 2025-10-28 23:51
+- we are not sure what "external readme review" entails
+- maybe it should pip install from requirements.txt in some way
+- git clone -> cd DECK folder -> run app/__init__.py -> check in browser

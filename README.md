@@ -14,7 +14,15 @@ To clone the repo, open the terminal and enter:
 
 ```git clone git@github.com:jumpingwhales/DECK.git```
 
+To install Flask:
+
+```python -m pip install Flask```
+
 # Launch codes:
+enter DECK:
+
+```cd DECK```
+
 in the terminal (once you are sure you are in the DECK repo):
 
 ```python app/__init__.py```
