@@ -1,0 +1,33 @@
+<!--
+Cindy Liu, David Lee, Ethan Cheung, Kalimul Kaif
+DECK
+SoftDev
+P00 -- Move Slowly and Fix Things
+2025-10-28
+time spent:
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    
+    <form action="{{ url_for('login') }}" method="POST">
+        <label>Username</label>
+        <input type="text" name="username" required>
+        <br><br>
+        
+        <label>Password</label>
+        <input type="password" name="password" required>
+        <br><br>
+        
+        <button type="submit">Login</button>
+    </form>
+    
+    <br>
+    <p>you new? <a href="{{ url_for('register') }}">create account</a></p>
+</body>
+</html>

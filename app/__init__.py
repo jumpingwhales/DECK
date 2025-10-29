@@ -9,51 +9,72 @@ import sqlite3
 
 app = Flask(__name__)
 
+app.secret_key = "secret_key_testing"
 DB_FILE = "blog_website.db"
 
-db = sqlite3.connect(DB_FILE)
-c = db.cursor()
+def initialize_db():
+  db = sqlite3.connect(DB_FILE)
+  c = db.cursor()
 
-c.execute("CREATE TABLE IF NOT EXISTS users(username TEXT, password TEXT, bio TEXT, creation_date INTEGER);")
-c.execute("CREATE TABLE IF NOT EXISTS blogs(blog_name TEXT, blog_creator TEXT, blog_link TEXT, blog_content TEXT, last_edited INTEGER);")
-c.execute("CREATE TABLE IF NOT EXISTS edits(edited_blog_name TEXT, blog_creator TEXT, timestamps TEXT);")
+  c.execute("CREATE TABLE IF NOT EXISTS users(username TEXT, password TEXT, bio TEXT, creation_date INTEGER);")
+  c.execute("CREATE TABLE IF NOT EXISTS blogs(blog_name TEXT, blog_creator TEXT, blog_link TEXT, blog_content TEXT, last_edited INTEGER);")
+  c.execute("CREATE TABLE IF NOT EXISTS edits(edited_blog_name TEXT, blog_creator TEXT, timestamps TEXT);")
 
-c.execute("DELETE FROM users")
-c.execute("DELETE FROM blogs")
-c.execute("DELETE FROM edits")
+  db.commit()
+  db.close()
 
 @app.route("/", methods=['GET', 'POST'])
-def register():
-    if 'username' in session:
-        return redirect(url_for('loggedIn'))
-    return render_template('login.html')
+def index():
+  if 'username' in session:
+    return redirect(url_for('homepage'))
+  return render_template('login.html')
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    if request.method == 'POST':
-       username = request.form['username']
-       password = request.form['password']
-       session['username'] = username
-    return render_template('register.html')
+  if request.method == 'POST':
+    username = request.form['username']
+    password = request.form['password']
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    cmd = f"SELECT * FROM users WHERE username = {username}"
+    user = c.fetchone()
+    db.close()
+
+    if user and user['password'] == password:
+      session['username'] = username
+      return redirect(url_for('homepage'))
+    else:
+      return redirect(url_for('index'))
+  return redirect(url_for('index'))
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    if request.method == "POST":
-       username = request.form['username']
-       password = request.form['password']
-       cmd = f"INSERT into users VALUES '{username}', '{password}'"
-       c.execute(cmd)
-       return render_template('homepage.html')
+  if request.method == "POST":
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    username = request.form['username']
+    password = request.form['password']
+    creation_date = 0
+    cmd = f"INSERT into users VALUES ('{username}', '{password}', '', {creation_date})"
+    c.execute(cmd)
+    db.commit()
+    db.close()
+    session['username'] = username
+    return redirect(url_for('homepage'))
+  return render_template('register.html')
 
-@app.route("/homepage", methods=["GET", "POST"])
+@app.route("/homepage")
 def homepage():
-    return render_template("template.html") # placeholder
+  if 'username' not in session:
+    return redirect(url_for('index'))
+  return render_template('homepage.html', username = session['username'])
 
 @app.route("/logout")
 def logout():
-    session.pop('username', None)
-    return render_template('logout.html')
+  session.pop('username', None)
+  return redirect(url_for('index'))
 
 if __name__ == "__main__":
-    app.debug = True
-    app.run()
+  initialize_db()
+  app.debug = True
+  app.run()
