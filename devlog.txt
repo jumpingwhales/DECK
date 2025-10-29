@@ -98,6 +98,11 @@ cindyL -- 2025-10-29 00:04
 - readme updated to include pip install flask
 
 EXTERNAL README REVIEW SUMMARY -- 2025-10-28 23:51
-- we are not sure what "external readme review" entails
-- maybe it should pip install from requirements.txt in some way
-- git clone -> cd DECK folder -> run app/__init__.py -> check in browser
+- we are not sure what "external readme review" entails, maybe reviewing other teams' readme's? in that case...
+- FatCatWiki has good install guide, we stole the venv install guide (inspiration) because that is a good addition if users dont want to or dont have permission to install packages on regular machine
+- BananasWiki also has good detailed install guide, with venv and flask install guide as well (similar to ours)
+
+davidL -- 2025-10-29 2:21
+- worked on __init__.py, completed functional app requirement
+- edited readme to include venv install guide
+- added templates for each html page
