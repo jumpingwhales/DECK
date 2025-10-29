@@ -109,3 +109,4 @@ EXTERNAL README REVIEW SUMMARY -- 2025-10-29 2:22
 
 davidL -- 2025-10-29 11:23
 - ran pip freeze command, filled requirements.txt (WITH cindyL)
+- added more specific app description in README
