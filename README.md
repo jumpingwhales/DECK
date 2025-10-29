@@ -43,4 +43,4 @@ in the terminal (once you are sure you are in the DECK repo):
 
 then, in a browser, enter:
 
-```127.0.0.1:5000```
+```http://127.0.0.1:5000```
