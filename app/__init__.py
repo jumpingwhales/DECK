@@ -74,6 +74,23 @@ def logout():
   session.pop('username', None)
   return redirect(url_for('index'))
 
+@app.route("/create_page", methods=["GET", "POST"])
+def create_page():
+  if request.method == "POST":
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    blog_name = request.form['name']
+    # blog_creator = c.execute("SELECT user FROM users") # not working for now
+    blog_creator = "tester"
+    blog_link = "temp for now"
+    blog_content = request.form['content']
+    last_edited = 0
+    cmd = f"INSERT into blogs VALUES ('{blog_name}', '{blog_creator}', '{blog_link}', '{blog_content}', {last_edited})"
+    c.execute(cmd)
+    db.commit()
+    db.close()
+  return render_template('create_page.html')
+
 if __name__ == "__main__":
   initialize_db()
   app.debug = True
