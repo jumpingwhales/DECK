@@ -114,3 +114,6 @@ davidL -- 2025-10-29 11:23
 ethanC -- 2025-10-29 11:48
 - created create_page.html
 - added web address into __init__.py
+
+cindyL -- 2025-10-30 11:38
+- readme updated, the install and run instructions finally work as intended

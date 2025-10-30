@@ -14,10 +14,6 @@ To clone the repo, open the terminal and enter:
 
 ```git clone git@github.com:jumpingwhales/DECK.git```
 
-To install Flask:
-
-```python -m pip install Flask```
-
 To open a virtual environment:
 
 ```python3 -m venv venv```
@@ -30,16 +26,12 @@ For Linux: ```. venv/bin/activate```
 
 Install dependencies:
 
-```pip install -r requirements.txt```
+```pip install -r DECK/requirements.txt```
 
 # Launch codes:
-enter DECK:
+enter this command:
 
-```cd DECK```
-
-in the terminal (once you are sure you are in the DECK repo):
-
-```python app/__init__.py```
+```python DECK/app/__init__.py```
 
 then, in a browser, enter:
 
