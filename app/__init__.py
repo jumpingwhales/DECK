@@ -6,6 +6,7 @@ from flask import redirect
 from flask import url_for
 import csv
 import sqlite3
+import random
 
 app = Flask(__name__)
 
@@ -79,16 +80,24 @@ def create_page():
   if request.method == "POST":
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    blog_name = request.form['name']
-    # blog_creator = c.execute("SELECT user FROM users") # not working for now
-    blog_creator = "tester"
-    blog_link = "temp for now"
+    blog_name = request.form['title']
+
+    blog_creator = session['username']
+
+    text = request.form['title']
+    result = text.replace(" ", "_") #may need to be changed based on strange symbols
+    blog_link = result
+
     blog_content = request.form['content']
+
     last_edited = 0
+
     cmd = f"INSERT into blogs VALUES ('{blog_name}', '{blog_creator}', '{blog_link}', '{blog_content}', {last_edited})"
     c.execute(cmd)
     db.commit()
     db.close()
+
+    return redirect(url_for('homepage'))
   return render_template('create_page.html')
 
 if __name__ == "__main__":
