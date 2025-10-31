@@ -68,7 +68,18 @@ def register():
 def homepage():
   if 'username' not in session:
     return redirect(url_for('index'))
-  return render_template('homepage.html', username = session['username'])
+  posts = ""
+  db = sqlite3.connect(DB_FILE)
+  c = db.cursor()
+  for row in c.execute("select * from blogs"):
+      # header for each blog
+      posts = posts +  "<h3>" + row[0] + " by " + row[1] + "</h3>"
+      # content for each blog
+      posts = posts + "<br>" + row[3]
+      # last edited date (revise row[4] entry later based on how last_edited is stored)
+      posts = posts + "<br>last edited on " + row[4]
+
+  return render_template('homepage.html', username = session['username'], posts = posts)
 
 @app.route("/logout")
 def logout():
@@ -102,7 +113,7 @@ def create_page():
   return render_template('create_page.html')
 
 @app.route("/edit_page", methods=["GET", "POST"])
-  def edit_page():
+def edit_page():
     if request.method == "POST":
       db = sqlite3.connect(DB_FILE)
       c = db.cursor()

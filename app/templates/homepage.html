@@ -13,22 +13,17 @@ time spent:
     <title>Homepage</title>
 </head>
 <body>
-    <h1>DECK bloggy blog</h1>
-    
-    <p>howdy, {{ username }}!</p>
-    
-    <a href="{{ url_for('logout') }}">logout?</a>
-    
-    <hr>
-    
-    <h2>dashyboard</h2>
-    <p>this confirms that you have logged in</p>
-    
-    <h3>upcoming features:</h3>
+    <h1>logDECK</h1>
+    <p>welcome, {{ username }}!</p>
     <ul>
-        <li>create blogs</li>
-        <li>manage content</li>
-        <li>edit your profile</li>
+        <li href="{{ url_for('profile') }}">your profile</li>
+        <li href="{{ url_for('create_page') }}">create blogs</li>
+        <li href="{{ url_for('logout') }}">logout?</li>
     </ul>
+
+    <hr>
+
+    <h2>what we're up to:</h2>
+    <p>{{ posts }}</p>
 </body>
 </html>
