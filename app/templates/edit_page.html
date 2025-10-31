@@ -17,20 +17,23 @@ TEXTBOX
 <html>
 <head>
     <title>Edit Page</title>
-    <h1> Edit Page: </h1>
-    <h2> {{title}} </h2>
-    
 
-    <form action="/homepage">
-      <label for="title"><b>Title:</b></label><br>
-      <input type="text" name="title"> <br>
-
-      <label for="content"><b>Content:</b></label> <br>
-      <input type="text" name="content"> <br>
-
-      <input type="submit" name="update" value="Create the Page"> <br>
+    <h1> Edit Original Page: </h1>
+    <form>
+      <input type="text" name="og_blog_name" value="ENTER BLOG NAME HERE">
+      <input type="submit" name="get_og" value="Get the Blog">
     </form>
+
 </head>
 <body>
+  <h2> {{og_title}} </h2>
+
+
+      <form action="/homepage">
+        <label for="content"><b>Content:</b></label> <br>
+        <input type="text" name="content"> <br>
+
+        <input type="submit" name="update" value="Create the Page"> <br>
+      </form>
 </body>
 </html>
