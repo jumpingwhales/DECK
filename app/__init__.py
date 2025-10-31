@@ -114,6 +114,15 @@ def create_page():
 
 @app.route("/edit_page", methods=["GET", "POST"])
 def edit_page():
+
+    if request.method == "GET":
+        db = sqlite3.connect(DB_FILE)
+        c = db.cursor()
+
+        title = request.form("og_blog_name")
+        og_title = f"SELECT * FROM blogs WHERE title = {title}"
+
+
     if request.method == "POST":
       db = sqlite3.connect(DB_FILE)
       c = db.cursor()
@@ -128,7 +137,7 @@ def edit_page():
 
       blog_content = request.form['content']
 
-      last_edited = 0
+      last_edited = last_edited + 1
 
       cmd = f"INSERT into blogs VALUES ('{blog_name}', '{blog_creator}', '{blog_link}', '{blog_content}', {last_edited})"
       c.execute(cmd)
@@ -136,7 +145,7 @@ def edit_page():
       db.close()
 
       return redirect(url_for('homepage'))
-    return render_template('create_page.html')
+    return render_template('edit_page.html')
 
 if __name__ == "__main__":
   initialize_db()
