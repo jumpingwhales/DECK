@@ -80,6 +80,7 @@ def create_page():
   if request.method == "POST":
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
+
     blog_name = request.form['title']
 
     blog_creator = session['username']
@@ -99,6 +100,32 @@ def create_page():
 
     return redirect(url_for('homepage'))
   return render_template('create_page.html')
+
+@app.route("/edit_page", methods=["GET", "POST"])
+  def edit_page():
+    if request.method == "POST":
+      db = sqlite3.connect(DB_FILE)
+      c = db.cursor()
+
+      blog_name = request.form['title']
+
+      blog_creator = session['username']
+
+      text = request.form['title']
+      result = text.replace(" ", "_") #may need to be changed based on strange symbols
+      blog_link = result
+
+      blog_content = request.form['content']
+
+      last_edited = 0
+
+      cmd = f"INSERT into blogs VALUES ('{blog_name}', '{blog_creator}', '{blog_link}', '{blog_content}', {last_edited})"
+      c.execute(cmd)
+      db.commit()
+      db.close()
+
+      return redirect(url_for('homepage'))
+    return render_template('create_page.html')
 
 if __name__ == "__main__":
   initialize_db()
