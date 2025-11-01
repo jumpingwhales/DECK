@@ -121,3 +121,7 @@ cindyL -- 2025-10-30 11:38
 ethanC -- 2025-10-30 11:45
 - added form blocks to html file
 - added links to information to address
+
+cindyL -- 2025-10-31 11:45
+- updated homepage to have links to other pages
+- made (untested) homepage functions

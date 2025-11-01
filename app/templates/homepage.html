@@ -16,9 +16,9 @@ time spent:
     <h1>logDECK</h1>
     <p>welcome, {{ username }}!</p>
     <ul>
-        <li href="{{ url_for('profile') }}">your profile</li>
-        <li href="{{ url_for('create_page') }}">create blogs</li>
-        <li href="{{ url_for('logout') }}">logout?</li>
+        <li>your profile</li>
+        <li><a href="{{ url_for('create_page') }}">create blogs</a></li>
+        <li><a href="{{ url_for('logout') }}">logout?</li></a>
     </ul>
 
     <hr>
