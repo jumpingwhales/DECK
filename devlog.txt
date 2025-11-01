@@ -125,3 +125,7 @@ ethanC -- 2025-10-30 11:45
 cindyL -- 2025-10-31 11:45
 - updated homepage to have links to other pages
 - made (untested) homepage functions
+
+ethanC -- 2025-10-31 11:55
+- created edit_page
+- added untested display of selected blog
