@@ -12,27 +12,43 @@ A Flask application coded in Python, utilizing SQLite databases to store users, 
 # Install guide:
 To clone the repo, open the terminal and enter:
 
-```git clone git@github.com:jumpingwhales/DECK.git```
+```
+git clone git@github.com:jumpingwhales/DECK.git
+```
 
 To open a virtual environment:
 
-```python3 -m venv venv```
+```
+python3 -m venv venv
+```
 
 Activate the venv:
 
-For Windows: ```venv\Scripts\activate```
+For Windows: 
+```
+venv\Scripts\activate
+```
 
-For Linux: ```. venv/bin/activate```
+For Linux: 
+```
+. venv/bin/activate
+```
 
 Install dependencies:
 
-```pip install -r DECK/requirements.txt```
+```
+pip install -r DECK/requirements.txt
+```
 
 # Launch codes:
 enter this command:
 
-```python DECK/app/__init__.py```
+```
+python DECK/app/__init__.py
+```
 
 then, in a browser, enter:
 
-```http://127.0.0.1:5000```
+```
+http://127.0.0.1:5000
+```

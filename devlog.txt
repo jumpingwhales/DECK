@@ -16,7 +16,7 @@ cindyL -- 2025-10-22 23:00
 - specified task breakdown
 - facilitated assignment of tasks
 
-davidL -- 2025-10-23 2:00
+davidL -- 2025-10-23 2:00DECK	Cindy Liu						3		4	4	3
 - finished design doc component map
 - added component relationship explanations
 - edited database organization
@@ -130,8 +130,12 @@ ethanC -- 2025-10-31 11:55
 - created edit_page
 - added untested display of selected blog
 
-davidL -- 2025-11-3 00:18 
+davidL -- 2025-11-03 00:18 
 - fixed logging in functionality (database work), correctly routes now
+
+ethanC -- 2025-11-03 11:22
+- copypastable code in readme
+- fix david devlog 3 -> 03
 
 kalimulK and davidL -- 2025-11-03 11:35
 - handled error for logging in before registering or invalid credentials on site 
