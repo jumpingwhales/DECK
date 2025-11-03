@@ -132,3 +132,6 @@ ethanC -- 2025-10-31 11:55
 
 davidL -- 2025-11-3 00:18 
 - fixed logging in functionality (database work), correctly routes now
+
+kalimulK and davidL -- 2025-11-03 11:35
+- handled error for logging in before registering or invalid credentials on site 

@@ -42,7 +42,10 @@ def login():
     user = c.fetchone()
     db.close()
 
-    if user[0] == username and user[1] == password:
+    if user == None  or user[0] != username or user[1] != password:
+        print("username or password do not match records")
+        return redirect(url_for('index'));
+    elif  user[0] == username and user[1] == password:
       session['username'] = username
       return redirect(url_for('homepage'))
     else:
@@ -57,7 +60,6 @@ def register():
     username = request.form['username']
     password = request.form['password']
     creation_date = 0
-    cmd = f"INSERT into users VALUES ('{username}', '{password}', '', {creation_date})"
     c.execute(cmd)
     db.commit()
     db.close()
