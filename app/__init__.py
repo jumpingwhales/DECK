@@ -37,11 +37,12 @@ def login():
     password = request.form['password']
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    cmd = f"SELECT * FROM users WHERE username = {username}"
+    cmd = f"SELECT * FROM users WHERE username = '{username}'"
+    c.execute(cmd)
     user = c.fetchone()
     db.close()
 
-    if user and user['password'] == password:
+    if user[0] == username and user[1] == password:
       session['username'] = username
       return redirect(url_for('homepage'))
     else:

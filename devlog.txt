@@ -129,3 +129,6 @@ cindyL -- 2025-10-31 11:45
 ethanC -- 2025-10-31 11:55
 - created edit_page
 - added untested display of selected blog
+
+davidL -- 2025-11-3 00:18 
+- fixed logging in functionality (database work), correctly routes now
