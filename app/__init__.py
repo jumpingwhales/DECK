@@ -28,7 +28,9 @@ def initialize_db():
 def index():
   if 'username' in session:
     return redirect(url_for('homepage'))
-  return render_template('login.html')
+  else:
+    text = "welcome"
+    return render_template('login.html', text=text)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -44,7 +46,8 @@ def login():
 
     if user == None  or user[0] != username or user[1] != password:
         print("username or password do not match records")
-        return redirect(url_for('index'));
+        text = "login failed, create new acc?"
+        return render_template('login.html', text=text)
     elif  user[0] == username and user[1] == password:
       session['username'] = username
       return redirect(url_for('homepage'))
@@ -60,6 +63,7 @@ def register():
     username = request.form['username']
     password = request.form['password']
     creation_date = 0
+    cmd = f"INSERT into users VALUES ('{username}', '{password}', 'temp', '{creation_date}')"
     c.execute(cmd)
     db.commit()
     db.close()

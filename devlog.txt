@@ -140,3 +140,11 @@ EXTERNAL README REVIEW SUMMARY -- 2025-11-04 19:40
 
 cindyL -- 2025-11-04 19:40
 - external readme review summary done
+
+kalimulK -- 2025-11-05 11:30
+- add error message to login.html after getting redirected back to login page if username and password do not match records
+- add welcome message to index/homepage
+
+cindyL -- 2025-11-05 11:37
+- double checked that homepage opens without crashing
+- helped troubleshoot other problems
