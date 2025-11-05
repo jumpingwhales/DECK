@@ -18,15 +18,18 @@ TEXTBOX
 <head>
     <title>Create New Page</title>
     <h1> Create a New Page: </h1>
+    
+    <l> Hey {{user}}, create your blog here: </l> <br> <br>
 
     <form action="/homepage">
+
       <label for="title"><b>Title:</b></label><br>
       <input type="text" name="title"> <br>
 
       <label for="content"><b>Content:</b></label> <br>
       <input type="text" name="content"> <br>
 
-      <input type="submit" name="update" value="Create the Page"> <br>
+      <input type="submit" name="update" value="Create"> <br>
     </form>
 </head>
 <body>
