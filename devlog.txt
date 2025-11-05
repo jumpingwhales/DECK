@@ -148,3 +148,7 @@ kalimulK -- 2025-11-05 11:30
 cindyL -- 2025-11-05 11:37
 - double checked that homepage opens without crashing
 - helped troubleshoot other problems
+
+ethanC -- 2025-11-05 11:46
+- added more functionality to create and edit page
+- made it so you can see your account that is editing
