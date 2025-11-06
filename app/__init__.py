@@ -78,12 +78,9 @@ def homepage():
   posts = ""
   db = sqlite3.connect(DB_FILE)
   c = db.cursor()
-  for row in c.execute("select * from blogs"):
-      posts = posts +  "<h3>" + row[0] + " by " + row[1] + "</h3>"
-      posts = posts + "<br>" + row[3]
-      posts = posts + "<br>last edited on " + str(row[4])
+  c.execute("select * from blogs")
+  posts = c.fetchall()
 
-  return render_template('homepage.html', username = session['username'], posts = posts)
   return render_template('homepage.html', username = session['username'], posts = posts)
 
 @app.route("/logout")
@@ -95,7 +92,7 @@ def logout():
 def create_page():
     if 'username' not in session:
         return redirect(url_for('index'))
-        
+
     if request.method == "GET":
         user = session['username']
         return render_template('create_page.html', user=user)
@@ -106,10 +103,10 @@ def create_page():
 
         blog_name = request.form.get("title", "")
         blog_creator = session['username']
-        
+
         blog_content = request.form.get("content", "")
         blog_link = blog_content.replace(" ", "_")
-        
+
         last_edited = 0
 
         cmd = f"INSERT into blogs VALUES ('{blog_name}', '{blog_creator}', '{blog_link}', '{blog_content}', {last_edited})"
@@ -130,7 +127,7 @@ def edit_page():
         c.execute("SELECT blog_name, blog_creator, blog_content FROM blogs")
         blogs = c.fetchall()
         db.close()
-        
+
         return render_template('edit_page.html', blogs=blogs)
 
 
@@ -150,11 +147,11 @@ def edit_page():
 
       cmd = f"UPDATE blogs SET blog_content = '{blog_content}', last_edited = last_edited + 1 WHERE blog_name = '{blog_name}'"
       c.execute(cmd)
-      
+
       timestamp = 0
       edit_cmd = f"INSERT INTO edits VALUES ('{blog_name}', '{blog_creator}', '{timestamp}')"
       c.execute(edit_cmd)
-      
+
       db.commit()
       db.close()
 

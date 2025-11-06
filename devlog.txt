@@ -125,7 +125,7 @@ ethanC -- 2025-10-31 11:55
 - created edit_page
 - added untested display of selected blog
 
-davidL -- 2025-11-03 00:18 
+davidL -- 2025-11-03 00:18
 - fixed logging in functionality (database work), correctly routes now
 
 ethanC -- 2025-11-03 11:22
@@ -133,7 +133,7 @@ ethanC -- 2025-11-03 11:22
 - fix david devlog 3 -> 03
 
 kalimulK and davidL -- 2025-11-03 11:35
-- handled error for logging in before registering or invalid credentials on site 
+- handled error for logging in before registering or invalid credentials on site
 
 EXTERNAL README REVIEW SUMMARY -- 2025-11-04 19:40
 - nothing is wrong, it's very comprehensive and works
@@ -161,3 +161,5 @@ davidL -- 2025-11-05 23:26
 - fixed html templates for create_page and edit_page
 - next work: make each editable page into a button, new template for editing?
 
+cindyL -- 2025-11-06 11:44
+- homepage now shows posts (not times though...)
