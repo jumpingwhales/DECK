@@ -79,13 +79,11 @@ def homepage():
   db = sqlite3.connect(DB_FILE)
   c = db.cursor()
   for row in c.execute("select * from blogs"):
-      # header for each blog
       posts = posts +  "<h3>" + row[0] + " by " + row[1] + "</h3>"
-      # content for each blog
       posts = posts + "<br>" + row[3]
-      # last edited date (revise row[4] entry later based on how last_edited is stored)
-      posts = posts + "<br>last edited on " + row[4]
+      posts = posts + "<br>last edited on " + str(row[4])
 
+  return render_template('homepage.html', username = session['username'], posts = posts)
   return render_template('homepage.html', username = session['username'], posts = posts)
 
 @app.route("/logout")
@@ -95,6 +93,9 @@ def logout():
 
 @app.route("/create_page", methods=["GET", "POST"])
 def create_page():
+    if 'username' not in session:
+        return redirect(url_for('index'))
+        
     if request.method == "GET":
         user = session['username']
         return render_template('create_page.html', user=user)
@@ -103,16 +104,12 @@ def create_page():
         db = sqlite3.connect(DB_FILE)
         c = db.cursor()
 
-        blog_name = request.form.get("title", " ")
-
+        blog_name = request.form.get("title", "")
         blog_creator = session['username']
-
-        beforelink = request.form.get("content", " ")
-        sanitizedlink = beforelink.replace(" ", "_") #may need to be changed based on strange symbols
-        blog_link = sanitizedlink
-
-        blog_content = request.form.get("content", " ")
-
+        
+        blog_content = request.form.get("content", "")
+        blog_link = blog_content.replace(" ", "_")
+        
         last_edited = 0
 
         cmd = f"INSERT into blogs VALUES ('{blog_name}', '{blog_creator}', '{blog_link}', '{blog_content}', {last_edited})"
@@ -122,7 +119,6 @@ def create_page():
         db.close()
 
         return redirect(url_for('homepage'))
-        return render_template('create_page.html')
 
 @app.route("/edit_page", methods=["GET", "POST"])
 def edit_page():
@@ -131,10 +127,11 @@ def edit_page():
         db = sqlite3.connect(DB_FILE)
         c = db.cursor()
 
-        get_link = f"SELECT blog_link FROM blogs"
-        g_link = c.execute(get_link)
-        link = c.fetchall()
-        return render_template('edit_page.html', link=link)
+        c.execute("SELECT blog_name, blog_creator, blog_content FROM blogs")
+        blogs = c.fetchall()
+        db.close()
+        
+        return render_template('edit_page.html', blogs=blogs)
 
 
     if request.method == "POST":
@@ -146,20 +143,22 @@ def edit_page():
       blog_creator = session['username']
 
       text = request.form['title']
-      result = text.replace(" ", "_") #may need to be changed based on strange symbols
+      result = text.replace(" ", "_")
       blog_link = result
 
       blog_content = request.form['content']
 
-      last_edited = last_edited + 1
-
-      cmd = f"INSERT into blogs VALUES ('{blog_name}', '{blog_creator}', '{blog_link}', '{blog_content}', {last_edited})"
+      cmd = f"UPDATE blogs SET blog_content = '{blog_content}', last_edited = last_edited + 1 WHERE blog_name = '{blog_name}'"
       c.execute(cmd)
+      
+      timestamp = 0
+      edit_cmd = f"INSERT INTO edits VALUES ('{blog_name}', '{blog_creator}', '{timestamp}')"
+      c.execute(edit_cmd)
+      
       db.commit()
       db.close()
 
       return redirect(url_for('homepage'))
-    return render_template('edit_page.html')
 
 if __name__ == "__main__":
   initialize_db()

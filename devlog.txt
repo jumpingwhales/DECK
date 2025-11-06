@@ -152,3 +152,12 @@ cindyL -- 2025-11-05 11:37
 ethanC -- 2025-11-05 11:46
 - added more functionality to create and edit page
 - made it so you can see your account that is editing
+
+davidL -- 2025-11-05 11:48
+- worked on edit page to list all blogs under certain usernames
+
+davidL -- 2025-11-05 23:26
+- finished working on create and edit page to maintain functionality in saving data on creating pages and editing pages under user's name
+- fixed html templates for create_page and edit_page
+- next work: make each editable page into a button, new template for editing?
+

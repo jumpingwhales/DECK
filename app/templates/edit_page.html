@@ -6,32 +6,30 @@ P00 -- Move Slowly and Fix Things
 2025-10-29
 time spent:
 -->
-
-<!--
-"What do you want to put in description?" section
-TEXTBOX
--->
-
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>Edit Page</title>
-
     <h1> Edit Original Page: </h1>
-
-    <p> {{link}} </p>
-
 </head>
 <body>
-  <h2> {{og_title}} </h2>
-
-
-      <form action="/homepage">
-        <label for="content"><b>Content:</b></label> <br>
-        <input type="text" name="content"> <br>
-
-        <input type="submit" name="update" value="Create the Page"> <br>
-      </form>
+    <a href="{{ url_for('homepage') }}">Back to Homepage</a>
+    <br><br>
+    
+    {% if blogs %}
+        {% for blog in blogs %}
+            <h2>{{ blog[0] }}</h2>
+            <p>Created by: {{ blog[1] }}</p>
+            <form method="POST">
+                <input type="hidden" name="title" value="{{ blog[0] }}">
+                <label for="content"><b>Content:</b></label> <br>
+                <textarea name="content" rows="10" cols="80">{{ blog[2] }}</textarea> <br>
+                <input type="submit" value="Save Changes"> <br>
+            </form>
+            <br><br>
+        {% endfor %}
+    {% else %}
+        <p>No blog pages to edit.</p>
+    {% endif %}
 </body>
 </html>
