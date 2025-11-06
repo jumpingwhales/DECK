@@ -62,8 +62,9 @@ def register():
     c = db.cursor()
     username = request.form['username']
     password = request.form['password']
+    bio = "ayy"
     creation_date = 0
-    cmd = f"INSERT into users VALUES ('{username}', '{password}', 'temp', '{creation_date}')"
+    cmd = f"INSERT into users VALUES ('{username}', '{password}', '{bio}, '{creation_date}')"
     c.execute(cmd)
     db.commit()
     db.close()
@@ -84,12 +85,26 @@ def homepage():
       posts = posts + "<br>last edited on " + str(row[4])
 
   return render_template('homepage.html', username = session['username'], posts = posts)
-  return render_template('homepage.html', username = session['username'], posts = posts)
 
 @app.route("/logout")
 def logout():
   session.pop('username', None)
   return redirect(url_for('index'))
+
+@app.route("/profile", methods=["GET", "POST"])
+def profile():
+    if 'username' not in session:
+      return redirect(url_for('index'))
+    if request.method == "GET":
+      db = sqlite3.connect(DB_FILE)
+      c = db.cursor()
+      username = session['username']
+
+      c.execute("SELECT bio from users WHERE username = '{username}'")
+      bio = c.fetchone()
+
+    return render_template('profilepage.html', username = session['username'], bio = bio)
+
 
 @app.route("/create_page", methods=["GET", "POST"])
 def create_page():
