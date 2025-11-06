@@ -161,3 +161,7 @@ davidL -- 2025-11-05 23:26
 - fixed html templates for create_page and edit_page
 - next work: make each editable page into a button, new template for editing?
 
+kalimulK -- 2025-11-06 11:48
+- added routing to user profile page in homepage.html
+- retrieve bio data from table sql query
+
