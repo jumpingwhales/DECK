@@ -11,11 +11,15 @@ time spent:
 <head>
     <title>Edit Page</title>
     <h1> Edit Original Page: </h1>
+    <style>
+    textarea {flex: 1}
+    </style>
+
 </head>
 <body>
     <a href="{{ url_for('homepage') }}">Back to Homepage</a>
     <br><br>
-    
+
     {% if blogs %}
         {% for blog in blogs %}
             <h2>{{ blog[0] }}</h2>
@@ -23,7 +27,7 @@ time spent:
             <form method="POST">
                 <input type="hidden" name="title" value="{{ blog[0] }}">
                 <label for="content"><b>Content:</b></label> <br>
-                <textarea name="content" rows="10" cols="80">{{ blog[2] }}</textarea> <br>
+                <textarea name="content" rows="5" cols="80">{{ blog[2] }}</textarea> <br>
                 <input type="submit" value="Save Changes"> <br>
             </form>
             <br><br>

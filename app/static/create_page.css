@@ -1,0 +1,12 @@
+
+body {
+  font-family: Verdana, Helvetica, sans-serif;
+  background: lightgray;
+}
+
+form {
+  background: gray;
+  padding: 5px;
+  max-width: 50%;
+  text-align: left;
+}
