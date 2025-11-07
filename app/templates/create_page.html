@@ -12,19 +12,22 @@ TEXTBOX
 -->
 <!DOCTYPE html>
 <html>
-<head>
-    <link rel="stylesheet" href="../static/create_page.css">
-</head>
-<body>
-  <title>Create New Page</title>
-  <h1> Create a New Page: </h1>
-  <l> Hey {{user}}, create your blog here: </l> <br> <br>
-  <form action="/create_page" method="POST">
-    <label for="title"><b>Title:</b></label><br>
-    <textarea type="text" name="title" cols="60"> </textarea> <br> <br>
-    <label for="content"><b>Content:</b></label> <br>
-    <textarea type="text" name="content" cols="60"> </textarea> <br>
-    <input type="submit" name="update" value="Create"> <br>
-  </form>
-</body>
+  <head>
+    <link rel="stylesheet" href="../static/create_page.css" />
+  </head>
+  <body>
+    <title>Create New Page</title>
+    <h1>Create a New Page:</h1>
+    <l> Hey {{user}}, create your blog here: </l> <br />
+    <br />
+    <form action="/create_page" method="POST">
+      <label for="title"><b>Title:</b></label
+      ><br />
+      <textarea type="text" name="title" cols="60"> </textarea> <br />
+      <br />
+      <label for="content"><b>Content:</b></label> <br />
+      <textarea type="text" name="content" cols="60"> </textarea> <br />
+      <input type="submit" name="update" value="Create" /> <br />
+    </form>
+  </body>
 </html>
