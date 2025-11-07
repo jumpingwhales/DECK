@@ -64,7 +64,7 @@ def register():
     password = request.form['password']
     bio = "ayy"
     creation_date = 0
-    cmd = f"INSERT into users VALUES ('{username}', '{password}', '{bio}, '{creation_date}')"
+    cmd = f"INSERT into users VALUES ('{username}', '{password}', '{bio}', '{creation_date}')"
     c.execute(cmd)
     db.commit()
     db.close()
