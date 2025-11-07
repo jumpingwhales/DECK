@@ -172,3 +172,7 @@ ethanC -- 2025-11-06 23:13
 - fixed merge conflicts
 - added css for create and edit page
 - linked css to create and edit html  
+
+davidL -- 2025-11-07 11:43
+- added time import in python for timestamps
+- fixed being able to edit other people's blogs when you didn't author them

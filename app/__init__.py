@@ -7,6 +7,7 @@ from flask import url_for
 import csv
 import sqlite3
 import random
+import time
 
 app = Flask(__name__)
 
@@ -64,6 +65,7 @@ def register():
     password = request.form['password']
     bio = "ayy"
     creation_date = 0
+
     cmd = f"INSERT into users VALUES ('{username}', '{password}', '{bio}', '{creation_date}')"
     c.execute(cmd)
     db.commit()
@@ -140,7 +142,10 @@ def edit_page():
         db = sqlite3.connect(DB_FILE)
         c = db.cursor()
 
-        c.execute("SELECT blog_name, blog_creator, blog_content FROM blogs")
+        username = session['username']
+        print(username)
+
+        c.execute(f"SELECT blog_name, blog_creator, blog_content FROM blogs WHERE blog_creator = '{username}'")
         blogs = c.fetchall()
         db.close()
 
