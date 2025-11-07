@@ -167,3 +167,8 @@ cindyL -- 2025-11-06 11:44
 kalimulK -- 2025-11-06 11:48
 - added routing to user profile page in homepage.html
 - retrieve bio data from table sql query
+
+ethanC -- 2025-11-06 23:13
+- fixed merge conflicts
+- added css for create and edit page
+- linked css to create and edit html  
