@@ -14,10 +14,22 @@ TEXTBOX
 <html>
   <head>
     <link rel="stylesheet" href="../static/create_page.css" />
+    <link rel="stylesheet" href="../static/nav.css" />
   </head>
   <body>
-    <title>Create New Page</title>
-    <h1>Create a New Page:</h1>
+    <h1>Create a New Page</h1>
+
+    <nav>
+      <ul class="nav-links">
+          <li><a href="{{ url_for('homepage') }}">Back to Homepage</a></li>
+          <li><a href="{{ url_for('create_page') }}">create a blog</a></li>
+          <li><a href="{{ url_for('edit_page') }}">edit existing blogs</a></li>
+          <li><a href="{{ url_for('logout') }}">logout?</a></li>
+          <li><a href="{{ url_for('profile') }}">my profile</a></li>
+      </ul>
+    </nav>
+
+    <p></p>
     <l> Hey {{user}}, create your blog here: </l> <br />
     <br />
     <form action="/create_page" method="POST">

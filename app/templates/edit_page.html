@@ -9,7 +9,8 @@ time spent:
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="../static/edit_page.css" />
+    <link rel="stylesheet" href="../static/edit_page.css"/>
+    <link rel="stylesheet" href="../static/nav.css" />
 
     <title>Edit Page</title>
     <h1>Edit Original Page:</h1>
@@ -20,8 +21,15 @@ time spent:
     </style>
   </head>
   <body>
-    <a href="{{ url_for('homepage') }}">Back to Homepage</a>
-    <br /><br />
+    <nav>
+      <ul class="nav-links">
+          <li><a href="{{ url_for('homepage') }}">Back to Homepage</a></li>
+          <li><a href="{{ url_for('create_page') }}">create a blog</a></li>
+          <li><a href="{{ url_for('edit_page') }}">edit existing blogs</a></li>
+          <li><a href="{{ url_for('logout') }}">logout?</a></li>
+          <li><a href="{{ url_for('profile') }}">my profile</a></li>
+      </ul>
+    </nav>
 
     {% if blogs %} {% for blog in blogs %}
     <h2>{{ blog[0] }}</h2>

@@ -1,0 +1,24 @@
+nav {
+    background-color: #333; /* Dark background */
+}
+
+.nav-links {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+    display: flex; /* Align items in a row */
+}
+
+.nav-links li {
+    margin: 0 15px; /* Space between links */
+}
+
+.nav-links a {
+    color: white; /* Link color */
+    text-decoration: none; /* Remove underline */
+    padding: 1px 2px; /* Padding around links */
+}
+
+.nav-links a:hover {
+    background-color: #555; /* Change background on hover */
+}
