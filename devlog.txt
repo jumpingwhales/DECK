@@ -16,7 +16,7 @@ cindyL -- 2025-10-22 23:00
 - specified task breakdown
 - facilitated assignment of tasks
 
-davidL -- 2025-10-23 2:00DECK	Cindy Liu						3		4	4	3
+davidL -- 2025-10-23 2:00
 - finished design doc component map
 - added component relationship explanations
 - edited database organization
