@@ -169,10 +169,16 @@ kalimulK -- 2025-11-06 11:48
 - retrieve bio data from table sql query
 
 ethanC -- 2025-11-06 23:13
-- fixed merge conflicts
 - added css for create and edit page
 - linked css to create and edit html  
 
 davidL -- 2025-11-07 11:43
 - added time import in python for timestamps
 - fixed being able to edit other people's blogs when you didn't author them
+
+cindyL -- 2025-11-07 13:15
+- devlog (not fully) updated to reflect newfound understanding of how blogs are supposed to be structured
+- devlog also updated to reflect current task distribution so far
+errors/bugs discovered (or created):
+- logout is never used
+- need to rework core functions in code
