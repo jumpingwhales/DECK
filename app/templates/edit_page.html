@@ -8,33 +8,34 @@ time spent:
 -->
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
+    <link rel="stylesheet" href="../static/edit_page.css" />
+
     <title>Edit Page</title>
-    <h1> Edit Original Page: </h1>
+    <h1>Edit Original Page:</h1>
     <style>
-    textarea {flex: 1}
+      textarea {
+        flex: 1;
+      }
     </style>
-
-</head>
-<body>
+  </head>
+  <body>
     <a href="{{ url_for('homepage') }}">Back to Homepage</a>
-    <br><br>
+    <br /><br />
 
-    {% if blogs %}
-        {% for blog in blogs %}
-            <h2>{{ blog[0] }}</h2>
-            <p>Created by: {{ blog[1] }}</p>
-            <form method="POST">
-                <input type="hidden" name="title" value="{{ blog[0] }}">
-                <label for="content"><b>Content:</b></label> <br>
-                <textarea name="content" rows="5" cols="80">{{ blog[2] }}</textarea> <br>
-                <input type="submit" value="Save Changes"> <br>
-            </form>
-            <br><br>
-        {% endfor %}
-    {% else %}
-        <p>No blog pages to edit.</p>
+    {% if blogs %} {% for blog in blogs %}
+    <h2>{{ blog[0] }}</h2>
+    <p>Created by: {{ blog[1] }}</p>
+    <form method="POST">
+      <input type="hidden" name="title" value="{{ blog[0] }}" />
+      <label for="content"><b>Content:</b></label> <br />
+      <textarea name="content" rows="5" cols="80">{{ blog[2] }}</textarea>
+      <br />
+      <input type="submit" value="Save Changes" /> <br />
+    </form>
+    <br /><br />
+    {% endfor %} {% else %}
+    <p>No blog pages to edit.</p>
     {% endif %}
-</body>
+  </body>
 </html>
-
