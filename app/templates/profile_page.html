@@ -12,11 +12,15 @@ time spent:
 <head>
   <link rel="stylesheet" href="../static/profile_page.css" />
   <link rel="stylesheet" href="../static/nav.css" />
-
-    <title>My Profile</title>
+  <title>My Profile</title>
 </head>
+
 <body>
+  {% if curr_user == username %}
     <h1>My Profile</h1>
+  {% else %}
+    <h2>{{username}}'s Profile</h2>
+  {% endif %}
 
     <nav>
       <ul class="nav-links">
@@ -28,11 +32,14 @@ time spent:
       </ul>
     </nav>
 
-    <p>{{username}}'s profile!</p>
+    {% if curr_user == username %}
+      <h2>My Bio!</h2>
+    {% else %}
+      <h2>{{username}}'s Bio!</h2>
+    {% endif %}
 
     <hr>
 
-    <h2>my bio</h2>
     {% if bio %}
       <p>{{ bio }}</p>
     {% else %}
