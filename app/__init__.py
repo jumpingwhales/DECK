@@ -25,7 +25,7 @@ def initialize_db():
   db.commit()
   db.close()
 
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/", methods=['GET', 'POST']) # load homepage if session exists, otherwise go to login
 def index():
   if 'username' in session:
     return redirect(url_for('homepage'))
@@ -33,7 +33,7 @@ def index():
     text = "welcome"
     return render_template('login.html', text=text)
 
-@app.route("/login", methods=["GET", "POST"])
+@app.route("/login", methods=["GET", "POST"]) # log in to preexisting account on site
 def login():
   if request.method == 'POST':
     username = request.form['username']
@@ -56,14 +56,14 @@ def login():
       return redirect(url_for('index'))
   return redirect(url_for('index'))
 
-@app.route("/register", methods=["GET", "POST"])
+@app.route("/register", methods=["GET", "POST"]) # create new account and add to database
 def register():
   if request.method == "POST":
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     username = request.form['username']
     password = request.form['password']
-    bio = "ayy"
+    bio = ""
     creation_date = 0
 
     cmd = f"INSERT into users VALUES ('{username}', '{password}', '{bio}', '{creation_date}')"
@@ -74,7 +74,7 @@ def register():
     return redirect(url_for('homepage'))
   return render_template('register.html')
 
-@app.route("/homepage")
+@app.route("/homepage") # welcome message and display of latest blogs 
 def homepage():
   if 'username' not in session:
     return redirect(url_for('index'))
@@ -91,22 +91,60 @@ def logout():
   session.pop('username', None)
   return redirect(url_for('index'))
 
-@app.route("/profile", methods=["GET", "POST"])
+@app.route("/profile", methods=["GET", "POST"]) # user profile
 def profile():
     if 'username' not in session:
       return redirect(url_for('index'))
-    if request.method == "GET":
-      db = sqlite3.connect(DB_FILE)
-      c = db.cursor()
-      username = session['username']
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    username = session['username']
 
-      c.execute("SELECT bio from users WHERE username = '{username}'")
-      bio = c.fetchone()
+    c.execute("SELECT bio from users WHERE username = ?", (username,))
+    result = c.fetchone()
+    bio = result[0] if result and result[0] else None
 
-    return render_template('profilepage.html', username = session['username'], bio = bio)
+    db.close()
+    return render_template("profile_page.html", username = username, bio = bio, curr_user = session['username'])
+
+@app.route("/profile/<username>") # for viewing other people's profiles
+def view_profile(username):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+
+    c.execute("SELECT bio FROM users WHERE username = ?", (username,))
+    result = c.fetchone()
+    bio = result[0] if result and result[0] else None
+
+    db.close()
+    return render_template("profile_page.html", username = username, bio = bio, curr_user = session['username'])
 
 
-@app.route("/create_page", methods=["GET", "POST"])
+@app.route("/edit_profile", methods=["GET", "POST"]) # edit bio in user profile
+def edit_profile():
+    if 'username' not in session:
+        return redirect(url_for('index'))
+
+    username = session['username']
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+
+    if request.method == "POST":
+        bio = request.form.get("bio")
+        if bio is not None:
+            c.execute("UPDATE users SET bio = ? WHERE username = ?", (bio, username))
+            db.commit()
+        db.close()
+        return redirect(url_for('profile'))
+
+    c.execute("SELECT bio FROM users WHERE username = ?", (username,))
+    result = c.fetchone()
+    bio = result[0] if result and result[0] else None
+
+    db.close()
+    return render_template("edit_profile.html", username = username, bio = bio)
+
+
+@app.route("/create_page", methods=["GET", "POST"]) # create new blog post
 def create_page():
     if 'username' not in session:
         return redirect(url_for('index'))
@@ -135,7 +173,7 @@ def create_page():
 
         return redirect(url_for('homepage'))
 
-@app.route("/edit_page", methods=["GET", "POST"])
+@app.route("/edit_page", methods=["GET", "POST"]) # edit existing blog posts
 def edit_page():
 
     if request.method == "GET":

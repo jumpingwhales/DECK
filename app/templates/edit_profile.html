@@ -13,10 +13,10 @@ time spent:
   <link rel="stylesheet" href="../static/profilepage.css" />
   <link rel="stylesheet" href="../static/nav.css" />
 
-    <title>My Profile</title>
+    <title>Edit Profile</title>
 </head>
 <body>
-    <h1>logDECK</h1>
+    <h1>Edit your Bio</h1>
 
     <nav>
       <ul class="nav-links">
@@ -28,12 +28,17 @@ time spent:
       </ul>
     </nav>
 
-    <p>{{username}}'s profile!</p>
+    <p></p>
+    <form action="{{ url_for('edit_profile') }}" method="POST">
+        {% if bio %}
+            <label for="bio">Your Current Bio:</label>
+            {{ bio }}
+        {% else %}
+            <label for="bio">No Bio Currently Set</label>
+        {% endif %}
+        <hr>
+        <textarea id="bio" name="bio" rows="6" cols="60" placeholder="Write something new about yourself..."></textarea><br>
+        <input type="submit" value="Save Changes">
+    </form>
 
     <hr>
-
-    <h2>my bio</h2>
-    {% if bio == NULL %}
-    <p></p>
-</body>
-</html>

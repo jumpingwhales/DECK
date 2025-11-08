@@ -176,9 +176,20 @@ davidL -- 2025-11-07 11:43
 - added time import in python for timestamps
 - fixed being able to edit other people's blogs when you didn't author them
 
+kalimulK -- 2025-11-07 11:48
+- added navbar functionality and styling to HTML pages
+- short comments for purpose of each function in init.py
+
 cindyL -- 2025-11-07 13:15
 - devlog (not fully) updated to reflect newfound understanding of how blogs are supposed to be structured
 - devlog also updated to reflect current task distribution so far
 errors/bugs discovered (or created):
 - logout is never used
 - need to rework core functions in code
+
+kalimulK -- 2025-11-07 23:00
+- bio now defaults to empty value in database
+- update profile_page.html to render bio if it exists or a message that the bio is empty otherwise
+- add view_profile function for viewing other people's bios to init.py
+- add link to blog creator's profile in their blog post in homepage.html
+- add edit_profile function and edit_profile.html for updating user bio

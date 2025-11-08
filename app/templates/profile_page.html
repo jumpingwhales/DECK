@@ -10,10 +10,10 @@ time spent:
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="../static/homepage.css" />
+  <link rel="stylesheet" href="../static/profile_page.css" />
   <link rel="stylesheet" href="../static/nav.css" />
 
-    <title>Homepage</title>
+    <title>My Profile</title>
 </head>
 <body>
     <h1>logDECK</h1>
@@ -28,18 +28,22 @@ time spent:
       </ul>
     </nav>
 
-    <p>welcome, {{username}}!</p>
+    <p>{{username}}'s profile!</p>
+
     <hr>
 
-    <h2>what we're up to:</h2>
-    {% for row in posts %}
-      <h3>{{ row[0] }} by 
-        <a href="{{ url_for('view_profile', username=row[1]) }}">{{ row[1] }}</a>
-      </h3>
-      {{row[3]}}
-      <br>
-      last edited on {{(row[4])}}
-      <br>
-    {%endfor%}
+    <h2>my bio</h2>
+    {% if bio %}
+      <p>{{ bio }}</p>
+    {% else %}
+      <p>no bio yet!</p>
+    {% endif %}
+  
+    {% if curr_user == username %}
+      <form action="{{ url_for('edit_profile') }}" method="GET">
+        <button type="submit">Edit Bio</button>
+      </form>
+    {% endif %}
+
 </body>
 </html>
