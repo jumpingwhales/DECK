@@ -19,23 +19,23 @@ time spent:
   {% if curr_user == username %}
     <h1>My Profile</h1>
   {% else %}
-    <h2>{{username}}'s Profile</h2>
+    <h1>{{username}}'s Profile</h1>
   {% endif %}
 
     <nav>
       <ul class="nav-links">
         <li><a href="{{ url_for('homepage') }}">Back to Homepage</a></li>
+        <li><a href="{{ url_for('profile') }}">My Profile</a></li>
         <li><a href="{{ url_for('create_page') }}">Create a New Blog</a></li>
         <li><a href="{{ url_for('edit_page') }}">Edit Existing Blogs</a></li>
         <li><a href="{{ url_for('logout') }}">Logout?</a></li>
-        <li><a href="{{ url_for('profile') }}">My Profile</a></li>
       </ul>
     </nav>
 
     {% if curr_user == username %}
-      <h2>My Bio!</h2>
+      <h3>My Bio!</h3>
     {% else %}
-      <h2>{{username}}'s Bio!</h2>
+      <h3>{{username}}'s Bio!</h3>
     {% endif %}
 
     <hr>

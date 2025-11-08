@@ -21,14 +21,14 @@ time spent:
     <nav>
       <ul class="nav-links">
         <li><a href="{{ url_for('homepage') }}">Back to Homepage</a></li>
+        <li><a href="{{ url_for('profile') }}">My Profile</a></li>
         <li><a href="{{ url_for('create_page') }}">Create a New Blog</a></li>
         <li><a href="{{ url_for('edit_page') }}">Edit Existing Blogs</a></li>
         <li><a href="{{ url_for('logout') }}">Logout?</a></li>
-        <li><a href="{{ url_for('profile') }}">My Profile</a></li>
       </ul>
     </nav>
 
-    <p>welcome, {{username}}!</p>
+    <h3>welcome, {{username}}!</h3>
     <hr>
 
     <h2>what we're up to:</h2>
