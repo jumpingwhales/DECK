@@ -30,7 +30,7 @@ def index():
   if 'username' in session:
     return redirect(url_for('homepage'))
   else:
-    text = "welcome"
+    text = ""
     return render_template('login.html', text=text)
 
 @app.route("/login", methods=["GET", "POST"]) # log in to preexisting account on site
