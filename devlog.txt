@@ -210,3 +210,7 @@ davidL - 2025-11-09 22:49
 - uploaded new design doc (worked on with team)
 - updated profiles to include creation date
 - implemented required fields for blogs and entry creation so you can't just create empty blogs and entries
+
+ethanC - 2025-11-09 22:51
+- redid the site map
+- smoothed corners for css
