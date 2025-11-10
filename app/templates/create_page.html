@@ -28,6 +28,9 @@ time spent: 30 min
     <p></p>
     <l> Hey {{user}}, create your blog here: </l> <br />
     <br />
+    {% if error %}
+    <p style="color: red; font-weight: bold;">{{ error }}</p>
+    {% endif %}
     <form action="/create_page" method="POST">
       <label for="title"><b>Blog Name:</b></label
       ><br />
