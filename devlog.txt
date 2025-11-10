@@ -201,3 +201,7 @@ davidL - 2025-11-09 19:44
 - added timestamps in EST using datetime import from python general lib
 - added entries feature to each blog, can add new entry or edit existing one with dropdowns
 - updated css for each blog entry viewing
+
+cindyL -- 2025-11-09 22:28
+- design doc even more updated.....
+- retested and fixed up install guides

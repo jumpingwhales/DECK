@@ -1,4 +1,4 @@
-# LogDECK by DECK
+# blogDECK by DECK
 
 # Roster:
 Cindy Liu - Project Manager (PM) <br>
@@ -26,7 +26,7 @@ Activate the venv:
 
 For Windows: 
 ```
-venv\Scripts\activate
+venv/Scripts/activate
 ```
 
 For Linux: 
