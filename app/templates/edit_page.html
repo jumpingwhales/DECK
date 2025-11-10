@@ -23,26 +23,22 @@ time spent:
   <body>
     <nav>
       <ul class="nav-links">
-        <li><a href="{{ url_for('homepage') }}">Back to Homepage</a></li>
+        <li><a href="{{ url_for('homepage') }}">Home Page</a></li>
         <li><a href="{{ url_for('profile') }}">My Profile</a></li>
-        <li><a href="{{ url_for('create_page') }}">Create a New Blog</a></li>
-        <li><a href="{{ url_for('edit_page') }}">Edit Existing Blogs</a></li>
-        <li><a href="{{ url_for('logout') }}">Logout?</a></li>
+        <li><a href="{{ url_for('create_page') }}">Create A Blog</a></li>
+        <li><a href="{{ url_for('edit_page') }}">My Blogs</a></li>
+        <li><a href="{{ url_for('logout') }}">LOGOUT</a></li>
       </ul>
     </nav>
 
-    {% if blogs %} {% for blog in blogs %}
-    <h2>{{ blog[0] }}</h2>
-    <p>Created by: {{ blog[1] }}</p>
-    <form method="POST">
-      <input type="hidden" name="title" value="{{ blog[0] }}" />
-      <label for="content"><b>Content:</b></label> <br />
-      <textarea name="content" rows="5" cols="80">{{ blog[2] }}</textarea>
-      <br />
-      <input type="submit" value="Save Changes" /> <br />
-    </form>
-    <br /><br />
-    {% endfor %} {% else %}
+    {% if blogs %}
+    <p>Click on a blog to manage its entries:</p>
+    {% for blog in blogs %}
+    <h3>
+      <a href="{{ url_for('edit_blog', blog_name=blog[0]) }}">{{ blog[0] }}</a>
+    </h3>
+    {% endfor %}
+    {% else %}
     <p>No blog pages to edit.</p>
     {% endif %}
   </body>

@@ -1,0 +1,63 @@
+<!--
+Cindy Liu, David Lee, Ethan Cheung, Kalimul Kaif
+DECK
+SoftDev
+P00 -- Move Slowly and Fix Things
+2025-11-09
+time spent:
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="../static/edit_page.css"/>
+    <link rel="stylesheet" href="../static/nav.css" />
+
+    <title>Edit Blog Entries</title>
+    <h1>Edit Entries for "{{ blog_name }}"</h1>
+  </head>
+  <body>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="{{ url_for('homepage') }}">Home Page</a></li>
+        <li><a href="{{ url_for('profile') }}">My Profile</a></li>
+        <li><a href="{{ url_for('create_page') }}">Create A Blog</a></li>
+        <li><a href="{{ url_for('edit_page') }}">My Blogs</a></li>
+        <li><a href="{{ url_for('logout') }}">LOGOUT</a></li>
+      </ul>
+    </nav>
+
+    <h2>Add New Entry</h2>
+    <form method="POST">
+      <label for="entry_title"><b>Entry Title:</b></label><br />
+      <textarea name="entry_title" rows="1" cols="60"></textarea><br />
+      <br />
+      <label for="entry_content"><b>Entry Content:</b></label><br />
+      <textarea name="entry_content" rows="5" cols="80"></textarea><br />
+      <input type="submit" value="Add Entry" /><br />
+    </form>
+    <br /><br />
+
+    <hr>
+
+    <h2>Edit Existing Entries</h2>
+    {% if entries %}
+      {% for entry in entries %}
+      <details>
+        <summary><b>{{ entry[0] }}</b></summary>
+        <form method="POST">
+          <input type="hidden" name="old_title" value="{{ entry[0] }}" />
+          <label for="entry_title"><b>Entry Title:</b></label><br />
+          <textarea name="entry_title" rows="1" cols="60">{{ entry[0] }}</textarea><br />
+          <br />
+          <label for="entry_content"><b>Entry Content:</b></label><br />
+          <textarea name="entry_content" rows="5" cols="80">{{ entry[1] }}</textarea><br />
+          <input type="submit" value="Save Changes" /><br />
+        </form>
+      </details>
+      <br />
+      {% endfor %}
+    {% else %}
+      <p>No entries yet. Add one above!</p>
+    {% endif %}
+  </body>
+</html>

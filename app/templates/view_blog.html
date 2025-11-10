@@ -1,0 +1,47 @@
+<!--
+Cindy Liu, David Lee, Ethan Cheung, Kalimul Kaif
+DECK
+SoftDev
+P00 -- Move Slowly and Fix Things
+2025-11-09
+time spent:
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="../static/view_blog.css" />
+  <link rel="stylesheet" href="../static/nav.css" />
+
+    <title>View Blog</title>
+</head>
+<body>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="{{ url_for('homepage') }}">Home Page</a></li>
+        <li><a href="{{ url_for('profile') }}">My Profile</a></li>
+        <li><a href="{{ url_for('create_page') }}">Create A Blog</a></li>
+        <li><a href="{{ url_for('edit_page') }}">My Blogs</a></li>
+        <li><a href="{{ url_for('logout') }}">LOGOUT</a></li>
+      </ul>
+    </nav>
+
+    <h2>{{ blog_name }}</h2>
+    <h3>Created by <a href="{{ url_for('view_profile', username=blog_creator) }}">{{ blog_creator }}</a></h3>
+    <hr>
+    {% if entries %}
+      {% for entry in entries %}
+        <div class="entry-container">
+          <div class="entry-title">
+            <h3>{{ entry[0] }}</h3>
+          </div>
+          <div class="entry-content">
+            <p>{{ entry[1] }}</p>
+          </div>
+          <i>{{ entry[2] }}</i>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>No entries yet in this blog.</p>
+    {% endif %}
+</body>
+</html>

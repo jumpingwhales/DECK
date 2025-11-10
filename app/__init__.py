@@ -8,6 +8,7 @@ import csv
 import sqlite3
 import random
 import time
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -19,8 +20,8 @@ def initialize_db():
   c = db.cursor()
 
   c.execute("CREATE TABLE IF NOT EXISTS users(username TEXT, password TEXT, bio TEXT, creation_date INTEGER);")
-  c.execute("CREATE TABLE IF NOT EXISTS blogs(blog_name TEXT, blog_creator TEXT, blog_link TEXT, blog_content TEXT, last_edited INTEGER);")
-  c.execute("CREATE TABLE IF NOT EXISTS edits(edited_blog_name TEXT, blog_creator TEXT, timestamps TEXT);")
+  c.execute("CREATE TABLE IF NOT EXISTS blogs(blog_name TEXT, blog_creator TEXT, creation_date INTEGER);")
+  c.execute("CREATE TABLE IF NOT EXISTS entries(entry_title TEXT, entry_content TEXT, blog_name TEXT, blog_creator TEXT, timestamp INTEGER);")
 
   db.commit()
   db.close()
@@ -63,8 +64,19 @@ def register():
     c = db.cursor()
     username = request.form['username']
     password = request.form['password']
+
+    # Check if username already exists
+    cmd = f"SELECT * FROM users WHERE username = '{username}'"
+    c.execute(cmd)
+    existing_user = c.fetchone()
+
+    if existing_user:
+      db.close()
+      text = "username already taken, try another one!"
+      return render_template('register.html', text=text)
+
     bio = ""
-    creation_date = 0
+    creation_date = int(time.time())
 
     cmd = f"INSERT into users VALUES ('{username}', '{password}', '{bio}', '{creation_date}')"
     c.execute(cmd)
@@ -74,17 +86,26 @@ def register():
     return redirect(url_for('homepage'))
   return render_template('register.html')
 
-@app.route("/homepage") # welcome message and display of latest blogs 
+@app.route("/homepage") # welcome message and display of latest blogs
 def homepage():
   if 'username' not in session:
     return redirect(url_for('index'))
   posts = ""
   db = sqlite3.connect(DB_FILE)
   c = db.cursor()
-  c.execute("select * from blogs")
+  c.execute("select * from blogs ORDER BY creation_date DESC")
   posts = c.fetchall()
+  db.close()
 
-  return render_template('homepage.html', username = session['username'], posts = posts)
+  # Format timestamps to EST
+  formatted_posts = []
+  for post in posts:
+    blog_name, blog_creator, creation_date = post
+    dt = datetime.fromtimestamp(creation_date)
+    formatted_date = dt.strftime('%B %d, %Y at %I:%M %p EST')
+    formatted_posts.append((blog_name, blog_creator, formatted_date))
+
+  return render_template('homepage.html', username = session['username'], posts = formatted_posts)
 
 @app.route("/logout")
 def logout():
@@ -103,8 +124,24 @@ def profile():
     result = c.fetchone()
     bio = result[0] if result and result[0] else None
 
+    c.execute("SELECT blog_name FROM blogs WHERE blog_creator = ?", (username,))
+    blogs_raw = c.fetchall()
+
+    # Get last edited date for each blog
+    blogs = []
+    for blog in blogs_raw:
+        blog_name = blog[0]
+        c.execute("SELECT MAX(timestamp) FROM entries WHERE blog_name = ?", (blog_name,))
+        last_edit = c.fetchone()[0]
+        if last_edit:
+            dt = datetime.fromtimestamp(last_edit)
+            formatted_date = dt.strftime('%B %d, %Y at %I:%M %p EST')
+            blogs.append((blog_name, formatted_date))
+        else:
+            blogs.append((blog_name, "No entries yet"))
+
     db.close()
-    return render_template("profile_page.html", username = username, bio = bio, curr_user = session['username'])
+    return render_template("profile_page.html", username = username, bio = bio, curr_user = session['username'], blogs = blogs)
 
 @app.route("/profile/<username>") # for viewing other people's profiles
 def view_profile(username):
@@ -115,8 +152,24 @@ def view_profile(username):
     result = c.fetchone()
     bio = result[0] if result and result[0] else None
 
+    c.execute("SELECT blog_name FROM blogs WHERE blog_creator = ?", (username,))
+    blogs_raw = c.fetchall()
+
+    # Get last edited date for each blog
+    blogs = []
+    for blog in blogs_raw:
+        blog_name = blog[0]
+        c.execute("SELECT MAX(timestamp) FROM entries WHERE blog_name = ?", (blog_name,))
+        last_edit = c.fetchone()[0]
+        if last_edit:
+            dt = datetime.fromtimestamp(last_edit)
+            formatted_date = dt.strftime('%B %d, %Y at %I:%M %p EST')
+            blogs.append((blog_name, formatted_date))
+        else:
+            blogs.append((blog_name, "No entries yet"))
+
     db.close()
-    return render_template("profile_page.html", username = username, bio = bio, curr_user = session['username'])
+    return render_template("profile_page.html", username = username, bio = bio, curr_user = session['username'], blogs = blogs)
 
 
 @app.route("/edit_profile", methods=["GET", "POST"]) # edit bio in user profile
@@ -144,7 +197,7 @@ def edit_profile():
     return render_template("edit_profile.html", username = username, bio = bio)
 
 
-@app.route("/create_page", methods=["GET", "POST"]) # create new blog post
+@app.route("/create_page", methods=["GET", "POST"]) # create new blog container
 def create_page():
     if 'username' not in session:
         return redirect(url_for('index'))
@@ -159,62 +212,108 @@ def create_page():
 
         blog_name = request.form.get("title", "")
         blog_creator = session['username']
+        creation_date = int(time.time())
 
-        blog_content = request.form.get("content", "")
-        blog_link = blog_content.replace(" ", "_")
-
-        last_edited = 0
-
-        cmd = f"INSERT into blogs VALUES ('{blog_name}', '{blog_creator}', '{blog_link}', '{blog_content}', {last_edited})"
+        cmd = f"INSERT into blogs VALUES ('{blog_name}', '{blog_creator}', {creation_date})"
         print(cmd)
         c.execute(cmd)
+
+        # Add initial entry
+        entry_title = request.form.get("entry_title", "")
+        entry_content = request.form.get("entry_content", "")
+        timestamp = int(time.time())
+
+        cmd = f"INSERT INTO entries VALUES ('{entry_title}', '{entry_content}', '{blog_name}', '{blog_creator}', {timestamp})"
+        c.execute(cmd)
+
         db.commit()
         db.close()
 
         return redirect(url_for('homepage'))
 
-@app.route("/edit_page", methods=["GET", "POST"]) # edit existing blog posts
+@app.route("/edit_page") # show user's blogs as clickable list
 def edit_page():
+    if 'username' not in session:
+        return redirect(url_for('index'))
 
-    if request.method == "GET":
-        db = sqlite3.connect(DB_FILE)
-        c = db.cursor()
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
 
-        username = session['username']
-        print(username)
+    username = session['username']
 
-        c.execute(f"SELECT blog_name, blog_creator, blog_content FROM blogs WHERE blog_creator = '{username}'")
-        blogs = c.fetchall()
-        db.close()
+    c.execute(f"SELECT blog_name, blog_creator FROM blogs WHERE blog_creator = '{username}'")
+    blogs = c.fetchall()
+    db.close()
 
-        return render_template('edit_page.html', blogs=blogs)
+    return render_template('edit_page.html', blogs=blogs)
 
+@app.route("/view_blog/<blog_name>") # view blog and its entries
+def view_blog(blog_name):
+    if 'username' not in session:
+        return redirect(url_for('index'))
+
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+
+    c.execute(f"SELECT blog_creator FROM blogs WHERE blog_name = '{blog_name}'")
+    blog_info = c.fetchone()
+
+    c.execute(f"SELECT entry_title, entry_content, timestamp FROM entries WHERE blog_name = '{blog_name}' ORDER BY timestamp DESC")
+    entries = c.fetchall()
+    db.close()
+
+    blog_creator = blog_info[0] if blog_info else ""
+
+    # Format timestamps for entries
+    formatted_entries = []
+    for entry in entries:
+        entry_title, entry_content, timestamp = entry
+        dt = datetime.fromtimestamp(timestamp)
+        formatted_date = dt.strftime('%B %d, %Y at %I:%M %p EST')
+        formatted_entries.append((entry_title, entry_content, formatted_date))
+
+    return render_template('view_blog.html', blog_name=blog_name, blog_creator=blog_creator, entries=formatted_entries)
+
+@app.route("/edit_blog/<blog_name>", methods=["GET", "POST"]) # edit blog entries
+def edit_blog(blog_name):
+    if 'username' not in session:
+        return redirect(url_for('index'))
+
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
 
     if request.method == "POST":
-      db = sqlite3.connect(DB_FILE)
-      c = db.cursor()
+        entry_title = request.form.get("entry_title", "")
+        entry_content = request.form.get("entry_content", "")
+        old_title = request.form.get("old_title", "")
+        blog_creator = session['username']
 
-      blog_name = request.form['title']
+        if old_title:
+            timestamp = int(time.time())
+            cmd = f"UPDATE entries SET entry_title = '{entry_title}', entry_content = '{entry_content}', timestamp = {timestamp} WHERE blog_name = '{blog_name}' AND entry_title = '{old_title}'"
+            c.execute(cmd)
+        else:
+            timestamp = int(time.time())
+            cmd = f"INSERT INTO entries VALUES ('{entry_title}', '{entry_content}', '{blog_name}', '{blog_creator}', {timestamp})"
+            c.execute(cmd)
 
-      blog_creator = session['username']
+        db.commit()
+        db.close()
+        return redirect(url_for('edit_blog', blog_name=blog_name))
 
-      text = request.form['title']
-      result = text.replace(" ", "_")
-      blog_link = result
+    c.execute(f"SELECT blog_creator FROM blogs WHERE blog_name = '{blog_name}'")
+    blog_info = c.fetchone()
 
-      blog_content = request.form['content']
+    c.execute(f"SELECT entry_title, entry_content, timestamp FROM entries WHERE blog_name = '{blog_name}' ORDER BY timestamp DESC")
+    entries = c.fetchall()
+    db.close()
 
-      cmd = f"UPDATE blogs SET blog_content = '{blog_content}', last_edited = last_edited + 1 WHERE blog_name = '{blog_name}'"
-      c.execute(cmd)
+    blog_creator = blog_info[0] if blog_info else ""
 
-      timestamp = 0
-      edit_cmd = f"INSERT INTO edits VALUES ('{blog_name}', '{blog_creator}', '{timestamp}')"
-      c.execute(edit_cmd)
+    if blog_creator != session['username']:
+        return redirect(url_for('homepage'))
 
-      db.commit()
-      db.close()
-
-      return redirect(url_for('homepage'))
+    return render_template('edit_blog.html', blog_name=blog_name, entries=entries)
 
 if __name__ == "__main__":
   initialize_db()

@@ -13,6 +13,10 @@ nav {
     margin: 0 15px; /* Space between links */
 }
 
+.nav-links li:last-child {
+    margin-left: auto; /* Push last item (LOGOUT) to the right */
+}
+
 .nav-links a {
     color: white; /* Link color */
     text-decoration: none; /* Remove underline */

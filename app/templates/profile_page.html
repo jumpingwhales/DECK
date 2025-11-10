@@ -24,11 +24,11 @@ time spent:
 
     <nav>
       <ul class="nav-links">
-        <li><a href="{{ url_for('homepage') }}">Back to Homepage</a></li>
+        <li><a href="{{ url_for('homepage') }}">Home Page</a></li>
         <li><a href="{{ url_for('profile') }}">My Profile</a></li>
-        <li><a href="{{ url_for('create_page') }}">Create a New Blog</a></li>
-        <li><a href="{{ url_for('edit_page') }}">Edit Existing Blogs</a></li>
-        <li><a href="{{ url_for('logout') }}">Logout?</a></li>
+        <li><a href="{{ url_for('create_page') }}">Create A Blog</a></li>
+        <li><a href="{{ url_for('edit_page') }}">My Blogs</a></li>
+        <li><a href="{{ url_for('logout') }}">LOGOUT</a></li>
       </ul>
     </nav>
 
@@ -45,11 +45,29 @@ time spent:
     {% else %}
       <p>no bio yet!</p>
     {% endif %}
-  
+
     {% if curr_user == username %}
       <form action="{{ url_for('edit_profile') }}" method="GET">
         <button type="submit">Edit Bio</button>
       </form>
+    {% endif %}
+
+    <hr>
+
+    {% if curr_user == username %}
+      <h3>My Blogs</h3>
+    {% else %}
+      <h3>{{username}}'s Blogs</h3>
+    {% endif %}
+
+    {% if blogs %}
+      <ul>
+        {% for blog in blogs %}
+          <li><a href="{{ url_for('view_blog', blog_name=blog[0]) }}">{{ blog[0] }}</a> (last edited at {{ blog[1] }})</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No blogs created yet.</p>
     {% endif %}
 
 </body>

@@ -21,11 +21,11 @@ TEXTBOX
 
     <nav>
       <ul class="nav-links">
-          <li><a href="{{ url_for('homepage') }}">Back to Homepage</a></li>
+          <li><a href="{{ url_for('homepage') }}">Home Page</a></li>
           <li><a href="{{ url_for('profile') }}">My Profile</a></li>
-          <li><a href="{{ url_for('create_page') }}">Create a New Blog</a></li>
-          <li><a href="{{ url_for('edit_page') }}">Edit Existing Blogs</a></li>
-          <li><a href="{{ url_for('logout') }}">Logout?</a></li>
+          <li><a href="{{ url_for('create_page') }}">Create A Blog</a></li>
+          <li><a href="{{ url_for('edit_page') }}">My Blogs</a></li>
+          <li><a href="{{ url_for('logout') }}">LOGOUT</a></li>
       </ul>
     </nav>
 
@@ -33,13 +33,17 @@ TEXTBOX
     <l> Hey {{user}}, create your blog here: </l> <br />
     <br />
     <form action="/create_page" method="POST">
-      <label for="title"><b>Title:</b></label
+      <label for="title"><b>Blog Name:</b></label
       ><br />
       <textarea type="text" name="title" cols="60"> </textarea> <br />
       <br />
-      <label for="content"><b>Content:</b></label> <br />
-      <textarea type="text" name="content" cols="60"> </textarea> <br />
-      <input type="submit" name="update" value="Create" /> <br />
+      <label for="entry_title"><b>Initial Entry Title:</b></label><br />
+      <textarea name="entry_title" rows="1" cols="60"></textarea><br />
+      <br />
+      <label for="entry_content"><b>Initial Entry Content:</b></label><br />
+      <textarea name="entry_content" rows="5" cols="80"></textarea><br />
+      <br />
+      <input type="submit" name="update" value="Create Blog" /> <br />
     </form>
   </body>
 </html>

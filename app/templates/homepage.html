@@ -16,15 +16,15 @@ time spent:
     <title>Homepage</title>
 </head>
 <body>
-    <h1>logDECK</h1>
+    <h1>blogDECK</h1>
 
     <nav>
       <ul class="nav-links">
-        <li><a href="{{ url_for('homepage') }}">Back to Homepage</a></li>
+        <li><a href="{{ url_for('homepage') }}">Home Page</a></li>
         <li><a href="{{ url_for('profile') }}">My Profile</a></li>
-        <li><a href="{{ url_for('create_page') }}">Create a New Blog</a></li>
-        <li><a href="{{ url_for('edit_page') }}">Edit Existing Blogs</a></li>
-        <li><a href="{{ url_for('logout') }}">Logout?</a></li>
+        <li><a href="{{ url_for('create_page') }}">Create A Blog</a></li>
+        <li><a href="{{ url_for('edit_page') }}">My Blogs</a></li>
+        <li><a href="{{ url_for('logout') }}">LOGOUT</a></li>
       </ul>
     </nav>
 
@@ -33,12 +33,11 @@ time spent:
 
     <h2>what we're up to:</h2>
     {% for row in posts %}
-      <h3>{{ row[0] }} by 
+      <h3>
+        <a href="{{ url_for('view_blog', blog_name=row[0]) }}">{{ row[0] }}</a> by
         <a href="{{ url_for('view_profile', username=row[1]) }}">{{ row[1] }}</a>
       </h3>
-      {{row[3]}}
-      <br>
-      last edited on {{(row[4])}}
+      <i>{{ row[2] }}</i>
       <br>
     {%endfor%}
 </body>

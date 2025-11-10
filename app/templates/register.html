@@ -17,6 +17,10 @@ time spent:
 <body>
     <h1>Create Account</h1>
 
+    {% if text %}
+        <p style="color: red;">{{ text }}</p>
+    {% endif %}
+
     <form action="{{ url_for('register') }}" method="POST">
         <label>Username</label>
         <input type="text" name="username" required>
