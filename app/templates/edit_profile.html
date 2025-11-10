@@ -37,7 +37,7 @@ time spent:
             <label for="bio">No Bio Currently Set</label>
         {% endif %}
         <hr>
-        <textarea id="bio" name="bio" rows="6" cols="60" placeholder="Write something new about yourself..."></textarea><br>
+        <textarea id="bio" name="bio" rows="6" cols="60" placeholder="Write something new about yourself...">{% if bio %}{{ bio }}{% endif %}</textarea><br>
         <input type="submit" value="Save Changes">
     </form>
 
