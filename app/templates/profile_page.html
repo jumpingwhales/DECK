@@ -38,6 +38,10 @@ time spent:
       <h3>{{username}}'s Bio!</h3>
     {% endif %}
 
+    {% if creation_date %}
+      <p><em>Member since {{ creation_date }}</em></p>
+    {% endif %}
+
     <hr>
 
     {% if bio %}

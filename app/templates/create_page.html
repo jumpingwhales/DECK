@@ -35,13 +35,13 @@ TEXTBOX
     <form action="/create_page" method="POST">
       <label for="title"><b>Blog Name:</b></label
       ><br />
-      <textarea type="text" name="title" cols="60"> </textarea> <br />
+      <textarea type="text" name="title" cols="60" required> </textarea> <br />
       <br />
       <label for="entry_title"><b>Initial Entry Title:</b></label><br />
-      <textarea name="entry_title" rows="1" cols="60"></textarea><br />
+      <textarea name="entry_title" rows="1" cols="60" required></textarea><br />
       <br />
       <label for="entry_content"><b>Initial Entry Content:</b></label><br />
-      <textarea name="entry_content" rows="5" cols="80"></textarea><br />
+      <textarea name="entry_content" rows="5" cols="80" required></textarea><br />
       <br />
       <input type="submit" name="update" value="Create Blog" /> <br />
     </form>

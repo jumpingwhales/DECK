@@ -120,9 +120,16 @@ def profile():
     c = db.cursor()
     username = session['username']
 
-    c.execute("SELECT bio from users WHERE username = ?", (username,))
+    c.execute("SELECT bio, creation_date from users WHERE username = ?", (username,))
     result = c.fetchone()
     bio = result[0] if result and result[0] else None
+    creation_date = result[1] if result else None
+
+    # Format creation date
+    formatted_creation_date = None
+    if creation_date:
+        dt = datetime.fromtimestamp(creation_date)
+        formatted_creation_date = dt.strftime('%B %d, %Y')
 
     c.execute("SELECT blog_name FROM blogs WHERE blog_creator = ?", (username,))
     blogs_raw = c.fetchall()
@@ -141,16 +148,23 @@ def profile():
             blogs.append((blog_name, "No entries yet"))
 
     db.close()
-    return render_template("profile_page.html", username = username, bio = bio, curr_user = session['username'], blogs = blogs)
+    return render_template("profile_page.html", username = username, bio = bio, curr_user = session['username'], blogs = blogs, creation_date = formatted_creation_date)
 
 @app.route("/profile/<username>") # for viewing other people's profiles
 def view_profile(username):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
 
-    c.execute("SELECT bio FROM users WHERE username = ?", (username,))
+    c.execute("SELECT bio, creation_date FROM users WHERE username = ?", (username,))
     result = c.fetchone()
     bio = result[0] if result and result[0] else None
+    creation_date = result[1] if result else None
+
+    # Format creation date
+    formatted_creation_date = None
+    if creation_date:
+        dt = datetime.fromtimestamp(creation_date)
+        formatted_creation_date = dt.strftime('%B %d, %Y')
 
     c.execute("SELECT blog_name FROM blogs WHERE blog_creator = ?", (username,))
     blogs_raw = c.fetchall()
@@ -169,7 +183,7 @@ def view_profile(username):
             blogs.append((blog_name, "No entries yet"))
 
     db.close()
-    return render_template("profile_page.html", username = username, bio = bio, curr_user = session['username'], blogs = blogs)
+    return render_template("profile_page.html", username = username, bio = bio, curr_user = session['username'], blogs = blogs, creation_date = formatted_creation_date)
 
 
 @app.route("/edit_profile", methods=["GET", "POST"]) # edit bio in user profile

@@ -29,10 +29,10 @@ time spent:
     <h2>Add New Entry</h2>
     <form method="POST">
       <label for="entry_title"><b>Entry Title:</b></label><br />
-      <textarea name="entry_title" rows="1" cols="60"></textarea><br />
+      <textarea name="entry_title" rows="1" cols="60" required></textarea><br />
       <br />
       <label for="entry_content"><b>Entry Content:</b></label><br />
-      <textarea name="entry_content" rows="5" cols="80"></textarea><br />
+      <textarea name="entry_content" rows="5" cols="80" required></textarea><br />
       <input type="submit" value="Add Entry" /><br />
     </form>
     <br /><br />
@@ -47,10 +47,10 @@ time spent:
         <form method="POST">
           <input type="hidden" name="old_title" value="{{ entry[0] }}" />
           <label for="entry_title"><b>Entry Title:</b></label><br />
-          <textarea name="entry_title" rows="1" cols="60">{{ entry[0] }}</textarea><br />
+          <textarea name="entry_title" rows="1" cols="60" required>{{ entry[0] }}</textarea><br />
           <br />
           <label for="entry_content"><b>Entry Content:</b></label><br />
-          <textarea name="entry_content" rows="5" cols="80">{{ entry[1] }}</textarea><br />
+          <textarea name="entry_content" rows="5" cols="80" required>{{ entry[1] }}</textarea><br />
           <input type="submit" value="Save Changes" /><br />
         </form>
       </details>
