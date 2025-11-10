@@ -205,3 +205,8 @@ davidL - 2025-11-09 19:44
 cindyL -- 2025-11-09 22:28
 - design doc even more updated.....
 - retested and fixed up install guides
+
+davidL - 2025-11-09 22:49
+- uploaded new design doc (worked on with team)
+- updated profiles to include creation date
+- implemented required fields for blogs and entry creation so you can't just create empty blogs and entries
