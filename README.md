@@ -1,4 +1,4 @@
-# LogDECK by DECK
+# blogDECK by DECK
 
 # Roster:
 Cindy Liu - Project Manager (PM) <br>
