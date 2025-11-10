@@ -1,3 +1,11 @@
+'''
+Cindy Liu, David Lee, Ethan Cheung, Kalimul Kaif
+DECK
+SoftDev
+P00 -- Move Slowly and Fix Things
+2025-11-10
+time spent: 10 hr
+'''
 from flask import Flask
 from flask import render_template
 from flask import request
