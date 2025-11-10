@@ -193,3 +193,11 @@ kalimulK -- 2025-11-07 23:00
 - add view_profile function for viewing other people's bios to init.py
 - add link to blog creator's profile in their blog post in homepage.html
 - add edit_profile function and edit_profile.html for updating user bio
+
+davidL - 2025-11-09 19:44
+- if you register using an existing user, it will give an error in red now
+- updated profile contents to display blog list created by that user
+- updated navbar styling (logout in far right side now)
+- added timestamps in EST using datetime import from python general lib
+- added entries feature to each blog, can add new entry or edit existing one with dropdowns
+- updated css for each blog entry viewing
